@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from './ContactList.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import operations from '../../redux/operations';
@@ -8,6 +8,10 @@ function ContactList() {
   const visibleContacts = useSelector(getVisibleContacts);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(operations.getContacts());
+  }, [dispatch]);
 
   return (
     <ul className={s.contactList}>
