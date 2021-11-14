@@ -36,3 +36,10 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.loader {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  /* display: flex;
+  justify-content: center; */
+}

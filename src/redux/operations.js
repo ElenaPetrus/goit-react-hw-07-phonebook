@@ -30,11 +30,10 @@ const getContacts = () => async dispatch => {
   //   .catch(error => dispatch(getContactsError(error)));
 };
 
-const addContact = (name, number, id) => dispatch => {
+const addContact = (name, number) => dispatch => {
   const contact = {
     name,
     number,
-    id,
   };
 
   dispatch(addContactRequest());
@@ -60,3 +59,42 @@ export default {
   addContact,
   deleteContact,
 };
+
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import * as ContactsAPI from '../components/services/api';
+
+// const getContacts = createAsyncThunk(
+//   'contacts/getContacts',
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const contacts = await ContactsAPI.getContacts();
+//       return contacts;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   },
+// );
+
+// const addContact = createAsyncThunk(
+//   'contacts/addContacts',
+//   async (newContact, { rejectWithValue }) => {
+//     try {
+//       const contacts = await ContactsAPI.addContact(newContact);
+//       return contacts;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   },
+// );
+
+// const deleteContact = createAsyncThunk(
+//   'contacts/addContacts',
+//   async (contactId, { rejectWithValue }) => {
+//     try {
+//       const contacts = await ContactsAPI.deleteContact(contactId);
+//       return contacts;
+//     } catch (error) {
+//       return rejectWithValue(error);
+//     }
+//   },
+// );
