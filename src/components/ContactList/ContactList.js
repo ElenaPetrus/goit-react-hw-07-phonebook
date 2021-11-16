@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import s from './ContactList.module.css';
-import Loader from '../Loader/Loader';
+import { Loader } from '../Loader/Loader';
 import { useSelector, useDispatch } from 'react-redux';
 import operations from '../../redux/operations';
 import { getVisibleContacts, getLoading } from '../../redux/selectors';
