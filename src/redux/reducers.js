@@ -47,30 +47,29 @@
 // export default rootReducer;
 
 import { combineReducers, createReducer } from '@reduxjs/toolkit';
-import {
-  getContacts,
-  addContact,
-  deleteContact,
-  filterContact,
-} from './operations';
+import operations from './operations';
+import { filterContact } from './actions';
 
 const items = createReducer([], {
-  [getContacts.fulfilled]: (_, { payload }) => payload,
-  [addContact.fulfilled]: (state, { payload }) => [...state, payload],
-  [deleteContact.fulfilled]: (state, { payload }) =>
+  [operations.getContacts.fulfilled]: (_, { payload }) => payload,
+  [operations.addContact.fulfilled]: (state, { payload }) => [
+    ...state,
+    payload,
+  ],
+  [operations.deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
 
 const loading = createReducer(false, {
-  [getContacts.pending]: () => true,
-  [getContacts.fulfilled]: () => false,
-  [getContacts.rejected]: () => false,
-  [addContact.pending]: () => true,
-  [addContact.fulfilled]: () => false,
-  [addContact.rejected]: () => false,
-  [deleteContact.pending]: () => true,
-  [deleteContact.fulfilled]: () => false,
-  [deleteContact.rejected]: () => false,
+  [operations.getContacts.pending]: () => true,
+  [operations.getContacts.fulfilled]: () => false,
+  [operations.getContacts.rejected]: () => false,
+  [operations.addContact.pending]: () => true,
+  [operations.addContact.fulfilled]: () => false,
+  [operations.addContact.rejected]: () => false,
+  [operations.deleteContact.pending]: () => true,
+  [operations.deleteContact.fulfilled]: () => false,
+  [operations.deleteContact.rejected]: () => false,
 });
 
 const filter = createReducer('', {
@@ -78,8 +77,8 @@ const filter = createReducer('', {
 });
 
 const error = createReducer(null, {
-  [getContacts.rejected]: (_, action) => action.payload,
-  [getContacts.pending]: () => null,
+  [operations.getContacts.rejected]: (_, action) => action.payload,
+  [operations.getContacts.pending]: () => null,
 });
 
 const rootReducer = combineReducers({
